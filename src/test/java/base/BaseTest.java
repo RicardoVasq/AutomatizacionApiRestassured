@@ -7,6 +7,6 @@ public class BaseTest {
 
     @BeforeClass
     public void setUp() {
-        RestAssured.baseURI = "https://reqres.in";
+        RestAssured.baseURI = "https://jsonplaceholder.typicode.com";
     }
 }

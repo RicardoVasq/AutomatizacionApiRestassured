@@ -7,20 +7,20 @@ import static io.restassured.RestAssured.given;
 public class UserService {
 
     /**
-     * Obtener lista de usuarios (paginada).
+     * Obtener lista de usuarios.
+     * GET https://jsonplaceholder.typicode.com/users
      *
-     * @param page Número de página (ej: 1, 2, etc.)
-     * @return Response de la API
+     * @return Response
      */
-    public Response getUsers(int page) {
+    public Response getUsers() {
         return given()
-                .queryParam("page", page)
                 .when()
-                .get("/api/users");
+                .get("/users");
     }
 
     /**
-     * Obtener un usuario por ID.
+     * Obtener usuario por ID.
+     * GET https://jsonplaceholder.typicode.com/users/{id}
      *
      * @param userId ID del usuario
      * @return Response
@@ -28,13 +28,14 @@ public class UserService {
     public Response getUserById(int userId) {
         return given()
                 .when()
-                .get("/api/users/" + userId);
+                .get("/users/" + userId);
     }
 
     /**
-     * Crear un nuevo usuario.
+     * Crear nuevo usuario.
+     * POST https://jsonplaceholder.typicode.com/users
      *
-     * @param body JSON con los datos del usuario
+     * @param body JSON con datos del usuario
      * @return Response
      */
     public Response createUser(String body) {
@@ -42,14 +43,15 @@ public class UserService {
                 .header("Content-Type", "application/json")
                 .body(body)
                 .when()
-                .post("/api/users");
+                .post("/users");
     }
 
     /**
-     * Actualizar usuario con PUT.
+     * Actualizar usuario.
+     * PUT https://jsonplaceholder.typicode.com/users/{id}
      *
      * @param userId ID del usuario
-     * @param body   JSON actualizado
+     * @param body   JSON con datos actualizados
      * @return Response
      */
     public Response updateUser(int userId, String body) {
@@ -57,11 +59,12 @@ public class UserService {
                 .header("Content-Type", "application/json")
                 .body(body)
                 .when()
-                .put("/api/users/" + userId);
+                .put("/users/" + userId);
     }
 
     /**
-     * Eliminar un usuario.
+     * Eliminar usuario.
+     * DELETE https://jsonplaceholder.typicode.com/users/{id}
      *
      * @param userId ID del usuario
      * @return Response
@@ -69,6 +72,6 @@ public class UserService {
     public Response deleteUser(int userId) {
         return given()
                 .when()
-                .delete("/api/users/" + userId);
+                .delete("/users/" + userId);
     }
 }
